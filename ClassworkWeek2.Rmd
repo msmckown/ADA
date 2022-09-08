@@ -1,0 +1,39 @@
+---
+title: "DiabetesAtlas"
+author: "Mara McKown"
+date: '2022-09-08'
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+####Load Packages
+```{r load_pack}
+library(tidyverse)
+library(haven)
+```
+
+### Class activity
+Import my data from GitHub
+```{r Part1}
+DiabetesAtlas <- read_csv("https://raw.githubusercontent.com/msmckown/ADA/main/DiabetesAtlasData.csv")
+```
+
+### Part 2
+Determine: a. the number of observations (i.e. the number of people who filled out the survey)and b. the number of variables in the dataframe
+```{r part3}
+dim(DiabetesAtlas) #tells us both the rows and columns
+nrow(DiabetesAtlas) #tells us number of observations/rows for part a
+ncol(DiabetesAtlas) #tells us number of variables/columns for part b
+```
+
+### Part 3
+Using code, find the county with the highest diabetes rate (annotate the code to indicate what it does)
+```{r part4}
+#figuring out what county has the diagnsed diabetes percentage that is highest and putting it into a new dataframe
+maxdiabetes <- filter(DiabetesAtlas, `Diagnosed Diabetes Percentage` == max(DiabetesAtlas$`Diagnosed Diabetes Percentage`, na.rm = TRUE))
+#find the county name of that value
+maxdiabetes$County
+```
